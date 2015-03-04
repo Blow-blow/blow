@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>华硕</title>
+    <!--设置iOS Andorid浏览器的默认渲染宽度 (在320~414之间)-->   
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0,minimal-ui">
+    <!-- 忽略页面中的数字识别为电话，忽略email识别 -->
+    <meta name="format-detection" content="telphone=no, email=no" />  
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <link rel="stylesheet" href="resource/css/normalize.css">
+    <link rel="stylesheet" href="resource/css/main.css">
+</head>
+<body>
+    <!-- 内容页 -->
+    <div class="wrap" id="js-wrapper">
+        <div class="wrapper1 js-wrapper1 hide">
+            <div class="btn btn-start js-start">开始游戏</div>
+            <div class="btn btn-explain js-explain">活动说明</div>
+        </div>
+        <div class="wrapper11 js-wrapper11 hide">
+        </div>
+        <div class="wrapper2 js-wrapper2">
+            <div class="btn-touch js-touch2"></div>
+        </div>   
+        <div class="wrapper3 js-wrapper3 hide">
+            <img class="hide" id="imgprocess" name="imgprocess" src="resource/images/process-01.jpg">
+            <canvas width="240" height="240" class="canvas-process" id="canvas-process"></canvas>
+            <p id="hand-message">按钮已松开，请重新吹气</p>
+            <div class="btn-touch js-touch3" id="canvas-btn"></div>
+        </div> 
+    </div>
+    <!-- 加载 -->
+    <div class="pop loading hide" id="js-loading">
+        <div class="load-png">
+            <img src="resource/images/shuxin.gif" style="vertical-align:middle">&nbsp;&nbsp;奋力加载中...</div>
+    </div>    
+    <!-- 弹出框 --> 
+    <div class="pop hide" id="js-pop-tpl">
+        <div class="pop-inner">
+            <div class="pop-msg js-pop-txt"></div>
+            <div class="pop-btn-box flex-equal">
+                <a href="javascript:;" class="js-close" data-uid="123456">好</a>
+            </div>
+        </div>
+    </div>   
+    <!-- 分享   -->
+    <div class="weixin-share" id="js-weixin-share">
+        <img src="resource/images/share.png" class="share" />        
+    </div>   
+    <script src="resource/js/lib/jquery-2.1.3.min.js"></script>
+    <script src="resource/js/jser.js"></script>
+    <script src="resource/js/main.js"></script>
+</body>
+</html>

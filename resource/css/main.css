@@ -1,0 +1,79 @@
+
+
+body{
+  background: #fffcf7;
+
+}
+.wrap{
+  min-height: 480px;
+  height: 100%;
+  /*border:4px solid #b18147;
+  border-left: 8px;
+  border-right: 8px;*/
+}
+.wrapper1{
+  background: url(../images/bg1.png) 0 0 no-repeat;
+  width:100%;
+  height: 100%;
+  background-size: 100% 100%;
+  position: relative;
+}
+.wrapper11{
+  background: url(../images/bg11.png) 0 0 no-repeat;
+  width:100%;
+  height: 100%;
+  background-size: 100% 100%;
+  position: relative;
+}
+.btn{
+  width: 132px;
+  height: 43px;
+  line-height: 40px;
+  font-size: 1.375em;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+  background: url(../images/btn.png) 0 0 no-repeat;
+  background-size: 100%;
+}
+.btn-start{
+  position: absolute;
+  top: 52%;
+  left:50%;
+  margin-left: -61px;
+}
+.btn-explain{
+  position: absolute;
+  top: 62.5%;
+  left:50%;
+  margin-left: -61px;
+}
+.wrapper2{
+  background: url(../images/bg2.png) 0 0 no-repeat;
+  width:100%;
+  height: 100%;
+  background-size: 100% 100%;
+  position: relative;
+}
+.btn-touch{
+  background: url(../images/btn2.png) 0 0 no-repeat;
+  width: 137px;
+  height: 128.5px;
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  margin-left: -64.25px;
+  background-size: 100% 100%;
+}
+.wrapper3{
+  background: url(../images/bg3.png) 0 0 no-repeat;
+  width:100%;
+  height: 100%;
+  background-size: 100% 100%;
+  position: relative;
+}
+.canvas-process {
+background: url(../images/process-02.jpg) no-repeat;
+margin: 0 auto;
+display: block;
+}
