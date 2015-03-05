@@ -11,19 +11,29 @@ body{
   border-left: 8px;
   border-right: 8px;*/
 }
-.wrapper1{
-  background: url(../images/bg1.png) 0 0 no-repeat;
+.wrapper{
   width:100%;
   height: 100%;
-  background-size: 100% 100%;
   position: relative;
 }
-.wrapper11{
-  background: url(../images/bg11.png) 0 0 no-repeat;
-  width:100%;
-  height: 100%;
+.wrapper1{
+  background: url(../images/bg1.png) 0 0 no-repeat;
   background-size: 100% 100%;
-  position: relative;
+}
+.wrapper-explain{
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color:rgba(0,0,0,0.7);
+}
+.explain-bg{
+  width: 100%;
+  height: 100%;
+  background: url(../images/bg-explain.png) 0 0 no-repeat;
+  background-size: 100% 100%;
 }
 .btn{
   width: 132px;
@@ -50,10 +60,18 @@ body{
 }
 .wrapper2{
   background: url(../images/bg2.png) 0 0 no-repeat;
-  width:100%;
-  height: 100%;
   background-size: 100% 100%;
-  position: relative;
+  overflow: hidden;
+}
+.wrapper2 .p1{
+  font-size: 1.1em;
+  color: #fff;
+  text-shadow:#000 3px 3px 10px;
+  margin: 25px auto 0;
+  width: 180px;
+  text-align: center;
+  line-height: 24px;
+
 }
 .btn-touch{
   background: url(../images/btn2.png) 0 0 no-repeat;
@@ -62,18 +80,152 @@ body{
   position: absolute;
   bottom: 18px;
   left: 50%;
-  margin-left: -64.25px;
+  margin-left: -70px;
   background-size: 100% 100%;
 }
 .wrapper3{
   background: url(../images/bg3.png) 0 0 no-repeat;
-  width:100%;
-  height: 100%;
   background-size: 100% 100%;
-  position: relative;
+  overflow: hidden;
 }
 .canvas-process {
-background: url(../images/process-02.jpg) no-repeat;
-margin: 0 auto;
-display: block;
+  background: url(../images/2.png) no-repeat;
+  margin: 60px auto 0;
+  display: block;
+}
+.wrapper3 .p1{
+  color: #fff;
+  font-size: 1.3em;
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  font-weight: bold;
+  top:55%;
+  left:0;
+  text-shadow:#000 4px 4px 20px;
+}
+.wrapper4{
+  background: url(../images/bg4.png) 0 0 no-repeat;
+  background-size: 100% 100%;
+  overflow: hidden;
+}
+.btn-help{
+  position: absolute;
+  top: 70.83%;
+  left:50%;
+  margin-left: -61px;
+}
+.btn-explain2{
+  top: 81.25%;
+}
+.wrapper4 .p1{
+  position: absolute;
+  top:30.625%;
+  right: 5%;
+  font-size:2em;
+  color: #c30d22;
+  text-align: right;
+  text-shadow:#000 4px 4px 20px;
+}
+.wrapper-tel{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color:rgba(0,0,0,0.8);
+}
+.tel-panel{
+  width: 225px;
+  height:110px;
+  margin:134px auto 0;
+  background: url(../images/panel.png) 0 0 no-repeat;
+  background-size: 100% 100%;
+  overflow: hidden;
+}
+.ipt-txt{
+  width: 140px;
+  height: 20px;
+  line-height: 20px;
+  display: block;
+  margin: 48px 0 0 52px;
+  font-size: 0.875em;
+}
+.btn-sure{
+  width: 50px;
+  height: 30px;
+  margin: 5px 0 0 100px;
+}
+.wrapper5{
+   background: url(../images/bg4.png) 0 0 no-repeat;
+  background-size: 100% 100%;
+  overflow: hidden;
+}
+.wrapper5 .p1{
+  position: absolute;
+  top:20.2%;
+  right: 5%;
+  font-size:1.2em;
+  color: #fff;
+  text-align: right;
+  text-shadow:#000 0px 3px 10px;
+}
+.wrapper5 .p1 span{
+  color: #c30d22;
+}
+.wrapper5 .p2{
+  position: absolute;
+  bottom: 18px;
+  font-size: 1em;
+  color: #231815;
+  width: 100%;
+  text-align: center;
+}
+
+.wrapper6{
+   background: url(../images/bg6.png) 0 0 no-repeat;
+  background-size: 100% 100%;
+  overflow: hidden;
+}
+.wrapper6 .p1{
+  position: absolute;
+  top:37.8%;
+  right: 5%;
+  font-size:1em;
+  color: #fff;
+  text-align: right;
+  text-shadow:#000 2px 3px 10px;
+}
+.wrapper6 .p1 span{
+  color: #c30d22;
+}
+.wrapper6 .p2{
+  position: absolute;
+  top:43.125%;
+  right: 5%;
+  font-size: 1em;
+  color: #fff;
+  text-align: right;
+    text-shadow:#000 2px 3px 10px;
+}
+.wrapper6 .p2 span{
+  color: #c30d22;
+}
+.btn-help2{
+  width: 172px;
+  height: 39px;
+  background: url(../images/btn3.png) 0 0 no-repeat;
+  line-height: 36px;
+  text-align: center;
+  margin-left: -86px;
+  top: 73.33%;
+}
+.wrapper6 .p3{
+  position: absolute;
+  bottom: 18px;
+  font-size: 1em;
+  color: #231815;
+  width: 100%;
+  text-align: center;
+  line-height: 26px;
 }

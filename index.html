@@ -15,21 +15,49 @@
 <body>
     <!-- 内容页 -->
     <div class="wrap" id="js-wrapper">
-        <div class="wrapper1 js-wrapper1 hide">
+        <div class="wrapper wrapper1 js-wrapper1 hide">
             <div class="btn btn-start js-start">开始游戏</div>
             <div class="btn btn-explain js-explain">活动说明</div>
         </div>
-        <div class="wrapper11 js-wrapper11 hide">
-        </div>
-        <div class="wrapper2 js-wrapper2">
+        <div class="wrapper wrapper2 js-wrapper2 hide">
+            <p class="p1">XX共吹了多少米，尚未获奖，需要您的帮助</p>
             <div class="btn-touch js-touch2"></div>
         </div>   
-        <div class="wrapper3 js-wrapper3 hide">
-            <img class="hide" id="imgprocess" name="imgprocess" src="resource/images/process-01.jpg">
-            <canvas width="240" height="240" class="canvas-process" id="canvas-process"></canvas>
-            <p id="hand-message">按钮已松开，请重新吹气</p>
+        <div class="wrapper wrapper3 js-wrapper3 hide">
+            <img class="hide" id="imgprocess" name="imgprocess" src="resource/images/1.png">
+            <canvas width="172" height="172" class="canvas-process" id="canvas-process"></canvas>
+            <p class="p1" id="hand-message">按钮已松开，请重新吹气</p>
             <div class="btn-touch js-touch3" id="canvas-btn"></div>
         </div> 
+        <div class="wrapper wrapper4 js-wrapper4 hide">
+            <p class="p1">600米</p>
+            <div class="btn btn-help js-help">喊人帮忙</div>
+            <div class="btn btn-explain btn-explain2 js-explain">活动说明</div>
+        </div>
+        <div class="wrapper wrapper5 js-wrapper5 hide">
+            <p class="p1">目前累计<span>7000</span> 米</p>
+            <div class="btn btn-help js-help">喊人帮忙</div>
+            <div class="btn btn-explain btn-explain2 js-explain">活动说明</div>
+            <p class="p2">XXX帮楼主吹了XX米</p>
+        </div>
+         <div class="wrapper wrapper6 js-wrapper6">
+            <p class="p1">帮助<span>700</span> 米</p>
+            <p class="p2">目前累计<span>7000</span> 米</p>
+            <div class="btn btn-help btn-help2 js-help">我也要拿大奖</div>
+            <p class="p3">XXX帮楼主吹了XX米<br/>XXX帮楼主吹了XX米</p>
+            
+        </div>
+    </div>
+    <!-- 说明 -->
+    <div class="wrapper-explain js-wrapper-explain hide">
+        <div class="explain-bg"></div>
+    </div>
+    <!-- 手机号 -->
+    <div class="wrapper-tel js-wrapper-tel hide">
+        <div class="tel-panel">
+            <input type="tel" class="ipt-txt js-tel"  maxlength="11" />
+            <div class="btn-sure js-sure"></div>
+        </div>
     </div>
     <!-- 加载 -->
     <div class="pop loading hide" id="js-loading">

@@ -279,12 +279,13 @@
 	 * @return {[Number]}            [返回当前弹出框的UID]
 	 */
 	Jser.alert = function(txt, callback) {
-		var $pop = $("#js-pop-tpl").find(".pop").clone();
+		var $pop = $("#js-pop-tpl").clone();
 		var uid = Jser.getGUID();
 		$pop.find(".js-pop-txt").html(txt);
 		$pop.find(".js-close").attr("data-uid", uid);
 		$pop.attr("id", "js-pop" + uid);
-		$(".js-wrapper").append($pop);
+		$("body").append($pop);
+		$pop.show();
 		$(".js-close").one('click', function() {
 			var uid = $(this).data("uid");
 			$("#js-pop" + uid).remove();
@@ -302,7 +303,7 @@
 	 * @return {[Number]}            [返回当前弹出框的UID]
 	 */
 	Jser.confirm = function(txt, ok, cancel, callback) {
-		var $pop = $("#js-pop-tpl").find(".pop").clone();
+		var $pop = $("#js-pop-tpl").clone();
 		var uid = Jser.getGUID();
 		$pop.find(".js-pop-txt").html(txt);
 		$pop.find(".js-close").attr("data-uid", uid).html("取消");
@@ -310,7 +311,8 @@
 		$clone.addClass("js-ok").html("好");
 		$pop.find(".js-close").parent().append($clone);
 		$pop.attr("id", "js-pop" + uid);
-		$(".js-wrapper").append($pop);
+		$("body").append($pop);
+		$pop.show();
 		$pop.find(".js-close").one('click', function() {
 			var uid = $(this).data("uid");
 			$("#js-pop" + uid).remove();
