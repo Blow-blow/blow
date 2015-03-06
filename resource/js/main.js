@@ -152,10 +152,12 @@ $(function() {
 				tanhao = false;
 				drawProcess();
 				$("#hand-message").text("按住按钮，持续吹气");
+				doAni();
 			}
 			if (handi > 550) {
 				tanhao = false;
 				$("#hand-message").text("完成");
+				stopAni();
 				// $("#canvas-btn").hide();
 				clearInterval(handTime);
 				handi = 0;
@@ -167,6 +169,7 @@ $(function() {
 				return;
 			}
 			$("#hand-message").text("按钮已松开，请重新吹气");
+			stopAni();
 			tanhao = true;
 			processValue = 0;
 			drawProcess();
@@ -197,8 +200,40 @@ $(function() {
 		} else {
 			Jser.alert("请输入正确的电话号码");
 		}
-		
+
 	}
+	var iTime = null,
+		aniindex = 0,
+		aniback = true;
+
+	function ani() {
+		var $ani = $(".js-ani");
+		if (!iTime) {
+			iTime = setInterval(function() {
+				if (aniback) {
+					aniindex++;
+				} else {
+					aniindex--;
+				}
+				if (aniindex == 4) {
+					aniback = false;
+				} else if (aniindex == 0) {
+					aniback = true;
+				}
+				$ani.css('backgroundPositionY', -92 * aniindex + 'px');
+			}, 70);
+		}
+	}
+
+	function doAni() {		
+		ani();
+	}
+
+	function stopAni() {
+		clearInterval(iTime);
+		iTime = null;
+	}
+
 
 
 })

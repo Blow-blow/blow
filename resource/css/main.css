@@ -104,6 +104,15 @@ body{
   left:0;
   text-shadow:#000 4px 4px 20px;
 }
+.ani{
+  width: 200px;
+  height: 92px;
+  background: url(../images/ani.png) 0 0 no-repeat;
+  position: absolute;
+  left: 50%;
+  margin-left: -100px;
+  top:50%;
+}
 .wrapper4{
   background: url(../images/bg4.png) 0 0 no-repeat;
   background-size: 100% 100%;
