@@ -89,7 +89,7 @@ body{
   overflow: hidden;
 }
 .canvas-process {
-  background: url(../images/2.png) no-repeat;
+  background: url(../images/c2.png) no-repeat;
   margin: 60px auto 0;
   display: block;
 }
@@ -111,7 +111,7 @@ body{
   position: absolute;
   left: 50%;
   margin-left: -100px;
-  top:50%;
+  top:55%;
 }
 .wrapper4{
   background: url(../images/bg4.png) 0 0 no-repeat;

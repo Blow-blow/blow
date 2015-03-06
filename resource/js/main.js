@@ -153,6 +153,7 @@ $(function() {
 				drawProcess();
 				$("#hand-message").text("按住按钮，持续吹气");
 				doAni();
+
 			}
 			if (handi > 550) {
 				tanhao = false;
@@ -206,8 +207,17 @@ $(function() {
 		aniindex = 0,
 		aniback = true;
 
+	function move() {
+		var $ani = $(".js-ani");
+
+
+
+	}
+
 	function ani() {
 		var $ani = $(".js-ani");
+		var _offset = {};
+		// var left=
 		if (!iTime) {
 			iTime = setInterval(function() {
 				if (aniback) {
@@ -221,15 +231,18 @@ $(function() {
 					aniback = true;
 				}
 				$ani.css('backgroundPositionY', -92 * aniindex + 'px');
+				_offset = $ani.offset();
+				$ani.css('top', _offset.top - Math.random() * 4 + 'px');
 			}, 70);
 		}
 	}
 
-	function doAni() {		
+	function doAni() {
 		ani();
 	}
 
 	function stopAni() {
+		 $(".js-ani").css('top',"55%");
 		clearInterval(iTime);
 		iTime = null;
 	}

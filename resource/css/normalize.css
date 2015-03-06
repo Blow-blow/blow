@@ -18,6 +18,7 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   /*在IE10之上版本，不允许默认的touch行为*/
   -ms-touch-action: none;
+  -webkit-user-select:none;
   height:100%;
 }
 
