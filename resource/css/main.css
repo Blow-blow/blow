@@ -38,8 +38,12 @@ body{
 .btn{
   width: 132px;
   height: 43px;
+  /*border:1px solid red;*/
+  display: block;
+  /*padding-top: 8px;*/
   line-height: 40px;
-  font-size: 1.375em;
+  /*font-size: 1.375em;*/
+  font-size: 22px;
   color: #fff;
   font-weight: bold;
   text-align: center;
@@ -165,7 +169,7 @@ body{
   margin: 5px 0 0 100px;
 }
 .wrapper5{
-   background: url(../images/bg4.png) 0 0 no-repeat;
+  background: url(../images/bg4.png) 0 0 no-repeat;
   background-size: 100% 100%;
   overflow: hidden;
 }
@@ -184,7 +188,7 @@ body{
 .wrapper5 .p2{
   position: absolute;
   bottom: 18px;
-  font-size: 1em;
+  font-size: 16px;
   color: #231815;
   width: 100%;
   text-align: center;
@@ -222,8 +226,8 @@ body{
 .btn-help2{
   width: 172px;
   height: 39px;
+  line-height: 39px;
   background: url(../images/btn3.png) 0 0 no-repeat;
-  line-height: 36px;
   text-align: center;
   margin-left: -86px;
   top: 73.33%;

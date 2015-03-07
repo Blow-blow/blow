@@ -1,7 +1,10 @@
+// 分享带出来的id
+var locOpenid = "";
 $(function() {
 
 	Jser.ACTION = "http://www.360youtu.com/blow_test/";
-	var locOpenid = "";
+
+	// 角色
 	var role = "me";
 	if (location.href.indexOf("openid") != -1) {
 		//分享链接
@@ -13,19 +16,38 @@ $(function() {
 	Jser.user = {};
 	// 获取当前用户信息
 	function init() {
+		// alert("locOpenid:" + locOpenid + "," + location.href);
 		Jser.getJSON(Jser.ACTION + "index/" + location.search, "", function(data) {
 			// alert(JSON.stringify(data));
 			if (data.status == "success") {
 				Jser.user = data.message;
-				$(".js-n1").html(data.message.nickname);
-				$(".js-h2").html(data.message.total_height);
+				$(".js-help-h2").html(data.message.total_height);
 				loadwxconfig();
 				initwrapper();
 			}
 		}, function() {
 
 		})
-	}
+	};
+	// 获取微信基本信息
+	function loadwxconfig() {
+		Jser.getJSON(Jser.ACTION + "wxconfig/", {
+			"url": location.href
+		}, function(data) {
+			// alert(JSON.stringify(data))
+			if (window.wx) {
+				wx.config(data);
+				weixin6();
+				wx.error(function(res) {
+					Jser.getJSON(Jser.ACTION + "update_access_token/", '', function(data) {
+						loadwxconfig();
+					})
+				});
+			}
+		}, function() {
+
+		}, "post")
+	};
 	init();
 	// var ishelp
 	// 初始化场景
@@ -38,57 +60,50 @@ $(function() {
 		// A君 点击进去 直达 结果页
 		// 未帮助的B君 点击进去  直达 开始页（开始帮助）
 		// 已帮助过的C君 在次点击进去  直达帮助最终界面
-		loadcanplay();
-		return false;
+
+		// 先判断
 		if (locOpenid) {
 			// 分享链接
 			// 是否为帮助好友玩me是自己，others是他人
 			var url = Jser.ACTION + "help_or_not/?openid=" + locOpenid;
 			Jser.getJSON(url, "", function(data) {
+				// alert(JSON.stringify(data));
 				if (data.message.help == "me") {
 					// 自己玩
 					role = "me";
+					locOpenid = "";
+					shareTitle(Jser.user.total_height);
 				} else {
 					// 别人玩
 					role = "others";
 					// 获取帮助者的信息
-					// getUserInfo();
 				}
 				loadcanplay();
 			}, function(data) {
 				alert(JSON.stringify(data));
 			});
 		} else {
-			role = "me";
 			// 原始链接	
+			role = "me";
+			shareTitle(Jser.user.total_height);
 			loadcanplay();
 		}
 	};
-
-	function getUserInfo() {
-		var url = Jser.ACTION + "info/";
-		if (locOpenid) {
-			//分享链接
-			url += "?openid=" + locOpenid;
+	// 分享链接 是否需要带
+	function shareTitle(m) {
+		WeiXinShare.lineLink = global_lineLink + "?openid=" + Jser.user.openid;
+		if (m) {
+			WeiXinShare.shareTitle = "我在真朋友对屏吹活动中吹了" + m + "米，运足气，对屏吹！惊喜好礼等你拿！";
 		}
-		Jser.getJSON(url, "", function(data) {
-			alert(JSON.stringify(data));
-			$(".js-n1").html(data.message.nickname);
-			$(".js-h2").html(data.message.total_height);
-		}, function(data) {
-			alert(JSON.stringify(data));
-		});
-	}
-
-
-
+		weixin6bySet();
+	};
+	// 判断进入的场景 应该是那个
 	function loadcanplay() {
 		var url = Jser.ACTION + "can_play/";
 		if (locOpenid) {
 			//分享链接
 			url += "?openid=" + locOpenid;
 		}
-		alert(url)
 		Jser.getJSON(url, "", function(data) {
 			alert(JSON.stringify(data));
 			var mesdata = data.message.data;
@@ -96,184 +111,158 @@ $(function() {
 				// 已经玩过 说明角色是自己		
 				switch5();
 			} else if (mesdata == "can help") {
-				// 帮助页  说明角色是他人
-				$(".js-other1").show();
-			} else if (mesdata == "can’t help") {
-				// 直达帮助最终界面 说明角色是他人
+				// 显示帮助页  说明角色是他人
+				if (role != "me") {
+					get_height();
+				}
+			} else if (mesdata == "can't help") {
+				// 已经帮助过了 那么就直接跳到帮助最终界面
 				switch6();
 			} else if (mesdata == "can play") {
-				// 开始界面 说明角色是自己
+				// 开始界面 说明角色是自己 
 			}
 		}, function(data) {
 			alert(JSON.stringify(data));
 		});
-	}
-
-	// 获取微信基本信息
-	function loadwxconfig() {
-		Jser.getJSON(Jser.ACTION + "wxconfig/", {
-			"url": location.href
-		}, function(data) {
-			// alert(JSON.stringify(data))
-			if (window.wx) {
-				wx.config(data);
-				// wx.config({
-				// 	debug: false,
-				// 	appId: data.appId,
-				// 	timestamp: data.timestamp,
-				// 	nonceStr: data.nonceStr,
-				// 	signature: data.signature,
-				// 	jsApiList: [
-				// 		'onMenuShareTimeline',
-				// 		'onMenuShareAppMessage'
-				// 		// 'onMenuShareQQ',
-				// 		// 'onMenuShareWeibo',
-				// 		// 'getNetworkType'
-				// 	]
-				// });
-				WeiXinShare.lineLink = global_lineLink + "?openid=" + Jser.user.openid;
-				if (Jser.user.total_height) {
-					WeiXinShare.shareTitle = "我在真朋友对屏吹活动中吹了" + Jser.user.total_height + "米，运足气，对屏吹！惊喜好礼等你拿！";
-				}
-				weixin6();
-				wx.error(function(res) {
-					Jser.getJSON(Jser.ACTION + "update_access_token/", '', function(data) {
-						loadwxconfig();
-					})
-				});
-			}
-		}, function() {
-
-		}, "post")
 	};
-	// 注册手机号
-	function loadmobile() {
-		var url = Jser.ACTION + "mobile/?mobile=" + $.trim($(".js-tel").val());
-		// alert(url)
+	// 提现帮助者的时候到了
+	function get_height() {
+		var url = Jser.ACTION + "get_height/?openid=" + locOpenid;
 		Jser.getJSON(url, "", function(data) {
 			// alert(JSON.stringify(data));
-			$(".js-wrapper-tel").hide();
-		}, function(data) {
-			// alert(JSON.stringify(data));
-			Jser.alert(data.reason);
+			$(".js-other1").show();
+			$(".js-n1").html(data.message.nickname);
+			$(".js-n1-h2").html(data.message.height);
 		});
 	};
+	// 帮助者的最终界面
+	function get_small_help_big() {
+		var url = Jser.ACTION + "get_small_help_big/?openid_big=" + locOpenid + "&openid_small=" + Jser.user.openid;
+		Jser.getJSON(url, "", function(data) {
+			$(".js-other-h1").html(data.message.height);
+			$(".js-other-h2").html(data.message.total_height);
+		});
+	};
+	// 获取帮助者的帮助信息
+	function get_help_message() {
+		var url = Jser.ACTION + "get_help_message/?openid=" + (locOpenid || Jser.user.openid);
+		Jser.getJSON(url, "", function(data) {
+			var _html = "";
+			$.each(data.message.help_message, function(i, item) {
+				_html += item.nickname + "帮楼主吹了" + item.height + "米" + "<br\/>";
+				$(".js-help-message1").html(item.nickname + "帮楼主吹了" + item.height + "米");
+			})
+			$(".js-help-message").html(_html);
 
-	function doSure() {
-		var v1 = $.trim($(".js-tel").val());
-		var reg = /^(\d{1,4}\-)?(13|15|17|18){1}\d{9}$/;
-		if (reg.test(v1)) {
-			loadmobile();
-		} else {
-			Jser.alert("请输入正确的电话号码");
-		}
-
+		}, function(data) {
+			// Jser.alert(data.reason);
+		});
 	};
 
 	$(".js-start").click(switch1);
 
-	$(".js-explain").click(showExplain);
+	$(".js-explain").click(function() {
+		$(".js-wrapper-explain").show();
+	});
 
-	$(".js-wrapper-explain").click(hideExplain);
+	$(".js-wrapper-explain").click(function() {
+		$(this).hide();
+	});
 
-	$(".js-touch2").click(switch2);
-
+	$(".js-touch2").on("touchstart", switch2);
+	// 第一次登陆 分享
 	$(".js-help").click(function() {
-		shareTitle($(".js-h1").text());
 		Jser.share();
 	});
+	// 第二次登陆 分享
 	$(".js-help2").click(function() {
-		// 累计
 		shareTitle($(".js-help-h2").text());
 		Jser.share();
 	});
-
+	// 帮助别人之后 我也要拿大奖
 	$(".js-gameplay").click(function() {
-		// $(".js-wrapper1").show();
-		// $(".js-wrapper6").hide();
-		// $(".js-wrapper6").fadeOut(300, function() {		
-		// 	$(".js-wrapper1").fadeIn(300, function() {
-
-		// 	});
-		// });
 		// 重新开始
 		location.href = "/blow_test/public/";
 	});
-
-	function shareTitle(m) {
-		WeiXinShare.lineLink = global_lineLink + "?openid=" + Jser.user.openid;
-		WeiXinShare.shareTitle = "我在真朋友对屏吹活动中吹了" + m + "米，运足气，对屏吹！惊喜好礼等你拿！";
-		weixin6bySet();
-	}
-
-	$(".js-sure").click(doSure);
-
+	// 注册手机号
+	$(".js-sure").click(function() {
+		var v1 = $.trim($(".js-tel").val());
+		var reg = /^(\d{1,4}\-)?(13|15|17|18){1}\d{9}$/;
+		if (reg.test(v1)) {
+			var url = Jser.ACTION + "mobile/?mobile=" + $.trim($(".js-tel").val());
+			Jser.getJSON(url, "", function(data) {
+				$(".js-wrapper-tel").hide();
+			}, function(data) {
+				Jser.alert(data.reason);
+			});
+		} else {
+			Jser.alert("请输入正确的电话号码");
+		}
+	});
 
 	function switch1() {
 		$(".js-wrapper1").fadeOut(300, function() {
-			$(".js-wrapper2").fadeIn(300, function() {
-				// $(".js-wrapper-tel").show();
-			});
+			$(".js-wrapper2").fadeIn(300, function() {});
 		});
-		// $(".js-wrapper1").hide();
-		// $(".js-wrapper2").show();
-	}
-
-	function showExplain() {
-		$(".js-wrapper-explain").show();
-	}
-
-	function hideExplain() {
-		$(".js-wrapper-explain").hide();
-	}
+	};
 
 	function switch2() {
-		// $(".js-wrapper2").hide();
-		// $(".js-wrapper3").show();
 		$(".js-wrapper2").fadeOut(300, function() {
 			initDraw();
 			$(".js-wrapper3").fadeIn(300, function() {});
 		});
-	}
+	};
 
 	function switch3() {
-		// $(".js-wrapper3").hide();
-		// $(".js-wrapper4").show();
 		loadadd_height();
 		$(".js-wrapper3").fadeOut(300, function() {
-			$(".js-wrapper4").fadeIn(300, function() {
-
-			});
+			if (role == "me") {
+				$(".js-wrapper4").fadeIn(300, function() {});
+			} else {
+				// 帮助者
+				$(".js-wrapper6").fadeIn(300, function() {});
+			}
 		});
 	};
 
 	function switch5() {
-		$(".js-wrapper1").hide();
-		$(".js-wrapper5").show();
+		get_help_message();
+		$(".js-wrapper1").fadeOut(300, function() {
+			$(".js-wrapper5").fadeIn(300, function() {
 
+			});
+		});
 	}
 
 	function switch6() {
-		$(".js-wrapper1").hide();
-		$(".js-wrapper6").show();
+		get_small_help_big();
+		get_help_message();
+		$(".js-wrapper1").fadeOut(300, function() {
+			$(".js-wrapper6").fadeIn(300, function() {
 
-	}
-
-
+			});
+		});
+	};
 	//为openid为x的用户吹气
 	function loadadd_height() {
-		var url = Jser.ACTION + "add_height/?openid=" + Jser.user.openid;
-		// Jser.alert(url);
+		if (role == "me") {
+			var url = Jser.ACTION + "add_height/?openid=" + Jser.user.openid;
+		} else {
+			var url = Jser.ACTION + "add_height/?openid=" + locOpenid;
+		}
 		Jser.getJSON(url, "", function(data) {
 			// alert(JSON.stringify(data));
 			$(".js-h1").html(data.message.height);
-			$(".js-h2").html(data.message.total_height);
-			shareTitle(data.message.height);
-			setTimeout(function() {
-				$(".js-wrapper-tel").show();
-			}, 200)
+			if (role == "me") {
+				shareTitle(data.message.height);
+				setTimeout(function() {
+					$(".js-wrapper-tel").show();
+				}, 500);
+			} else {
+				$(".js-other-h2").html(data.message.total_height);
+				get_help_message();
+			}
 		}, function(data) {
-			// alert(JSON.stringify(data));
 			Jser.alert(data.reason);
 		});
 	}
