@@ -68,10 +68,9 @@ body{
   color: #fff;
   text-shadow:#000 3px 3px 10px;
   margin: 25px auto 0;
-  width: 180px;
+  width: 200px;
   text-align: center;
   line-height: 24px;
-
 }
 .btn-touch{
   background: url(../images/btn2.png) 0 0 no-repeat;
@@ -111,7 +110,7 @@ body{
   position: absolute;
   left: 50%;
   margin-left: -100px;
-  top:55%;
+  top:52%;
 }
 .wrapper4{
   background: url(../images/bg4.png) 0 0 no-repeat;
