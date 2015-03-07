@@ -244,7 +244,11 @@
 					} else {
 						if (j.reason == "need login") {
 							if (location.hash.indexOf("debug") == -1) {
-								location.href = "/blow_test/login";
+								var _url = "/blow_test/login";
+								if (locOpenid) {
+									_url += "/?openid=" + locOpenid;
+								}
+								location.href = _url;
 							}
 							return false;
 						}
