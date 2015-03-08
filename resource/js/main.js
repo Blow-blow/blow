@@ -105,7 +105,7 @@ $(function() {
 			url += "?openid=" + locOpenid;
 		}
 		Jser.getJSON(url, "", function(data) {
-			alert(JSON.stringify(data));
+			// alert(JSON.stringify(data));
 			var mesdata = data.message.data;
 			if (mesdata == "played") {
 				// 已经玩过 说明角色是自己		
