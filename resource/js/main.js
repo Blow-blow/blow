@@ -46,7 +46,7 @@ $(function() {
 			}
 		}, function() {
 
-		}, "post")
+		}, "post","true")
 	};
 	init();
 	// var ishelp
@@ -81,7 +81,7 @@ $(function() {
 				loadcanplay();
 			}, function(data) {
 				alert(JSON.stringify(data));
-			});
+			}, "get","true");
 		} else {
 			// 原始链接	
 			role = "me";
@@ -123,7 +123,7 @@ $(function() {
 			}
 		}, function(data) {
 			alert(JSON.stringify(data));
-		});
+		}, "get","true");
 	};
 	// 提现帮助者的时候到了
 	function get_height() {
