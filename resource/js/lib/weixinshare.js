@@ -1,5 +1,5 @@
 var global_origin = window.location.origin || (window.location.protocol + '//' + window.location.hostname);
-var global_lineLink = global_origin + "/blow_test/public/";
+var global_lineLink = global_origin + "/blow_test/enter/";
 var WeiXinShare = {
 	imgUrl: global_origin + "/blow_test/public/resource/images/icon.png", //注意必须是绝对路径
 	lineLink: global_lineLink, //同样，必须是绝对路径  

@@ -274,7 +274,7 @@ $(function() {
 				shareTitle(data.message.height);
 				setTimeout(function() {
 					$(".js-wrapper-tel").show();
-				}, 2000);
+				}, 3500);
 			} else {
 				$(".js-other-h2").html(data.message.total_height);
 				$(".js-help-pc").css("top", 200 - h * 0.375);
@@ -377,26 +377,26 @@ $(function() {
 		processValue = 0;
 		var $this = $(this);
 		var $random = $(".js-random-txt");
-		if (skipstart == false) {
-			handi = 0;
-		} else {
-			handi = 50;
-		}
+		// if (skipstart == false) {
+		// 	handi = 0;
+		// } else {
+		// 	handi = 100;
+		// }
 		clearInterval(handTime);
 		handTime = setInterval(function() {
 			handi++;
-			if (handi > 50 && handi <= 550) {
+			if (handi > 100 && handi <= 600) {
 				skipstart = true;
 				tanhao = false;
 				drawProcess();
 				$("#hand-message").text("按住按钮，持续吹气");
 				doAni();
-				$random.html(handi - 50);
+				$random.html(handi - 100);
 			}
-			if (handi > 550) {
+			if (handi > 600) {
 				tanhao = false;
 				$("#hand-message").text("完成");
-				stopAni();
+				stopAni2();
 				// $("#canvas-btn").hide();
 				clearInterval(handTime);
 				handi = 0;
@@ -404,7 +404,7 @@ $(function() {
 			}
 		}, 20)
 		$("#canvas-btn").on("touchend", function(e) {
-			if (thisstaus != 1) {
+			if (thisstaus != 1 || handi > 600) {
 				return;
 			}
 			$("#hand-message").text("按钮已松开，请重新吹气");
@@ -459,6 +459,9 @@ $(function() {
 
 	function stopAni() {
 		$(".js-ani").css('top', "55%");
+		stopAni2();
+	}
+	function stopAni2() {
 		clearInterval(iTime);
 		iTime = null;
 	}
