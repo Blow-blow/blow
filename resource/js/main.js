@@ -21,13 +21,19 @@ $(function() {
 			// alert(JSON.stringify(data));
 			if (data.status == "success") {
 				Jser.user = data.message;
-				$(".js-help-h2").html(data.message.total_height);
+				var h = data.message.total_height;
+				$(".js-help-h2").html(h);
+				$(".js-pc-h1").html(h);
+				if (h > 700) {
+					h = 700;
+				}
+				$(".js-help-pc").css("top", 200 - h * 0.375);
 				loadwxconfig();
 				initwrapper();
 			}
 		}, function() {
 
-		})
+		}, "get", "json", true)
 	};
 	// 获取微信基本信息
 	function loadwxconfig() {
@@ -38,15 +44,16 @@ $(function() {
 			if (window.wx) {
 				wx.config(data);
 				weixin6();
+				// alert(wx.error)
 				wx.error(function(res) {
 					Jser.getJSON(Jser.ACTION + "update_access_token/", '', function(data) {
 						loadwxconfig();
 					})
 				});
 			}
-		}, function() {
-
-		}, "post","true")
+		}, function(data) {
+			alert(JSON.stringify(data))
+		}, "post", "json", true)
 	};
 	init();
 	// var ishelp
@@ -80,8 +87,8 @@ $(function() {
 				}
 				loadcanplay();
 			}, function(data) {
-				alert(JSON.stringify(data));
-			}, "get","true");
+				// alert(JSON.stringify(data));
+			}, "get", "json", true)
 		} else {
 			// 原始链接	
 			role = "me";
@@ -114,6 +121,7 @@ $(function() {
 				// 显示帮助页  说明角色是他人
 				if (role != "me") {
 					get_height();
+					switch1();
 				}
 			} else if (mesdata == "can't help") {
 				// 已经帮助过了 那么就直接跳到帮助最终界面
@@ -122,8 +130,8 @@ $(function() {
 				// 开始界面 说明角色是自己 
 			}
 		}, function(data) {
-			alert(JSON.stringify(data));
-		}, "get","true");
+			// alert(JSON.stringify(data));
+		}, "get", "json", true)
 	};
 	// 提现帮助者的时候到了
 	function get_height() {
@@ -139,7 +147,10 @@ $(function() {
 	function get_small_help_big() {
 		var url = Jser.ACTION + "get_small_help_big/?openid_big=" + locOpenid + "&openid_small=" + Jser.user.openid;
 		Jser.getJSON(url, "", function(data) {
-			$(".js-other-h1").html(data.message.height);
+			var h = data.message.height;
+			$(".js-other-h1").html(h);
+			$(".js-pc-h1").html(h);
+			$(".js-help-pc").css("top", 200 - h * 0.375);
 			$(".js-other-h2").html(data.message.total_height);
 		});
 	};
@@ -252,14 +263,21 @@ $(function() {
 		}
 		Jser.getJSON(url, "", function(data) {
 			// alert(JSON.stringify(data));
-			$(".js-h1").html(data.message.height);
+			var h = data.message.height;
+			$(".js-h1").html(h);
+			$(".js-pc-h1").html(h);
 			if (role == "me") {
+				if (h > 600) {
+					h = 600
+				}
+				$(".js-pc").css("top", 200 - h * 0.375);
 				shareTitle(data.message.height);
 				setTimeout(function() {
 					$(".js-wrapper-tel").show();
-				}, 500);
+				}, 2000);
 			} else {
 				$(".js-other-h2").html(data.message.total_height);
+				$(".js-help-pc").css("top", 200 - h * 0.375);
 				get_help_message();
 			}
 		}, function(data) {
@@ -281,6 +299,7 @@ $(function() {
 		drawProcess();
 		processValue = 0;
 		handi = 0;
+		$(".js-random-txt").html(handi);
 		clearInterval(handTime);
 	}
 	var imgload = false;
@@ -357,6 +376,7 @@ $(function() {
 		$("#hand-message").text("准备开始");
 		processValue = 0;
 		var $this = $(this);
+		var $random = $(".js-random-txt");
 		if (skipstart == false) {
 			handi = 0;
 		} else {
@@ -371,7 +391,7 @@ $(function() {
 				drawProcess();
 				$("#hand-message").text("按住按钮，持续吹气");
 				doAni();
-
+				$random.html(handi - 50);
 			}
 			if (handi > 550) {
 				tanhao = false;
@@ -393,6 +413,7 @@ $(function() {
 			processValue = 0;
 			drawProcess();
 			handi = 0;
+			$random.html(handi);
 			clearInterval(handTime);
 			handTime = null;
 		})
@@ -427,7 +448,7 @@ $(function() {
 				}
 				$ani.css('backgroundPositionY', -92 * aniindex + 'px');
 				_offset = $ani.offset();
-				$ani.css('top', _offset.top - Math.random() * 3 + 'px');
+				$ani.css('top', _offset.top - Math.random() * 2 + 'px');
 			}, 70);
 		}
 	}
