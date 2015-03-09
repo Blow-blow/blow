@@ -244,7 +244,7 @@
 					} else {
 						if (j.reason == "need login") {
 							if (location.hash.indexOf("debug") == -1) {
-								var _url = "/blow_test/login";
+								var _url = "/blow/login";
 								if (locOpenid) {
 									_url += "/?openid=" + locOpenid;
 								}

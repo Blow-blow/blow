@@ -2,7 +2,7 @@
 var locOpenid = "";
 $(function() {
 
-	Jser.ACTION = "http://www.360youtu.com/blow_test/";
+	Jser.ACTION = "http://www.360youtu.com/blow/";
 
 	// 角色
 	var role = "me";
@@ -193,7 +193,7 @@ $(function() {
 	// 帮助别人之后 我也要拿大奖
 	$(".js-gameplay").click(function() {
 		// 重新开始
-		location.href = "/blow_test/public/";
+		location.href = "/blow/enter/";
 	});
 	// 注册手机号
 	$(".js-sure").click(function() {
@@ -274,7 +274,7 @@ $(function() {
 				shareTitle(data.message.height);
 				setTimeout(function() {
 					$(".js-wrapper-tel").show();
-				}, 3500);
+				}, 2000);
 			} else {
 				$(".js-other-h2").html(data.message.total_height);
 				$(".js-help-pc").css("top", 200 - h * 0.375);

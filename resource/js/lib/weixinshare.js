@@ -1,7 +1,7 @@
 var global_origin = window.location.origin || (window.location.protocol + '//' + window.location.hostname);
-var global_lineLink = global_origin + "/blow_test/enter/";
+var global_lineLink = global_origin + "/blow/enter/";
 var WeiXinShare = {
-	imgUrl: global_origin + "/blow_test/public/resource/images/icon.png", //注意必须是绝对路径
+	imgUrl: global_origin + "/blow/public/resource/images/icon.png", //注意必须是绝对路径
 	lineLink: global_lineLink, //同样，必须是绝对路径  
 	shareTitle: '运足气，对屏吹！惊喜好礼等你拿！', //分享title
 	descContent: '真朋友，对屏吹', //分享给朋友或朋友圈时的文字简介
