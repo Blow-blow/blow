@@ -272,7 +272,7 @@ body{
 .pc-h1{
   font-size: 0.75em;
   position: absolute;
-  right: 0;
+  left: 5px;
   bottom: -12px;
   color: #fff;
   font-weight: bold;
