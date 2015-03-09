@@ -391,7 +391,7 @@ $(function() {
 				drawProcess();
 				$("#hand-message").text("按住按钮，持续吹气");
 				doAni();
-				$random.html(handi - 100);
+				$random.html(Math.floor(Math.random()*1000));
 			}
 			if (handi > 600) {
 				tanhao = false;
