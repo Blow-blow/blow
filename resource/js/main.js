@@ -21,11 +21,12 @@ $(function() {
 			// alert(JSON.stringify(data));
 			if (data.status == "success") {
 				Jser.user = data.message;
-				var h = data.message.total_height;
-				$(".js-help-h2").html(h);
+				
+				$(".js-help-h2").html(data.message.total_height);
+				var h = data.message.height;
 				$(".js-pc-h1").html(h);
-				if (h > 700) {
-					h = 700;
+				if (h > 600) {
+					h = 600;
 				}
 				$(".js-help-pc").css("top", 200 - h * 0.375);
 				loadwxconfig();
