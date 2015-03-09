@@ -375,7 +375,8 @@ $(function() {
 		initTanhao = false;
 		$("#hand-message").text("准备开始");
 		processValue = 0;
-		var $this = $(this);
+		var $this = $(this),
+			num;
 		var $random = $(".js-random-txt");
 		// if (skipstart == false) {
 		// 	handi = 0;
@@ -391,7 +392,11 @@ $(function() {
 				drawProcess();
 				$("#hand-message").text("按住按钮，持续吹气");
 				doAni();
-				$random.html(Math.floor(Math.random()*1000));
+				num = Math.floor(Math.random() * 1000);
+				if (num < 100) {
+					num += 100;
+				}
+				$random.html(num);
 			}
 			if (handi > 600) {
 				tanhao = false;
@@ -461,6 +466,7 @@ $(function() {
 		$(".js-ani").css('top', "55%");
 		stopAni2();
 	}
+
 	function stopAni2() {
 		clearInterval(iTime);
 		iTime = null;
