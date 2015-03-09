@@ -21,7 +21,7 @@ $(function() {
 			// alert(JSON.stringify(data));
 			if (data.status == "success") {
 				Jser.user = data.message;
-				
+
 				$(".js-help-h2").html(data.message.total_height);
 				var h = data.message.height;
 				$(".js-pc-h1").html(h);
@@ -161,16 +161,38 @@ $(function() {
 		Jser.getJSON(url, "", function(data) {
 			var _html = "";
 			$.each(data.message.help_message, function(i, item) {
-				_html += item.nickname + "帮楼主吹了" + item.height + "米" + "<br\/>";
-				$(".js-help-message1").html(item.nickname + "帮楼主吹了" + item.height + "米");
+				_html += "<p>" + item.nickname + "帮楼主吹了" + item.height + "米" + "</p>";
+				// $(".js-help-message1").html(item.nickname + "帮楼主吹了" + item.height + "米");
 			})
 			$(".js-help-message").html(_html);
-
+			if (data.message.help_message.length > 2) {
+				rollMes();
+			}
 		}, function(data) {
 			// Jser.alert(data.reason);
 		});
 	};
 
+	function rollMes() {
+		var $box = $(".js-messageBox");
+		var $m1 = $(".js-help-message");
+		var $m2 = $(".js-help-message2")
+		var speed = 50; //滚动速度值，值越大速度越慢
+		$m2.html($m1.eq(0).html());
+		var h = Math.max($m1.eq(0).height(), $m1.eq(1).height()),
+			top;
+
+		function Marquee() {
+			top = $box.css("top").replace(/px/, "");
+			if (top <= -h) {
+				top = 0;
+			}
+			top--;
+			$box.css("top", top);
+		}
+		var MyMar = setInterval(Marquee, speed); //设置定时器
+
+	};
 	$(".js-start").click(switch1);
 
 	$(".js-explain").click(function() {
