@@ -263,7 +263,7 @@ $(function() {
 		get_help_message();
 		$(".js-wrapper1").fadeOut(300, function() {
 			if(Number(Jser.user.prize)){
-				$(".js-prize").html("恭喜您已中奖，<br/>请等待工作人员联系");
+				$(".js-prize").html("恭喜您已中奖，<br/>请等待工作人员联系！");
 			}else{
 				$(".js-prize").html("您离目标还差一点，<br/>喊朋友来帮你吹！");
 			}
