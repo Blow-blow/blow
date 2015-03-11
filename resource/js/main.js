@@ -415,7 +415,7 @@ $(function() {
 		clearInterval(handTime);
 		handTime = setInterval(function() {
 			handi++;
-			if (handi > 100 && handi <= 600) {
+			if (handi > 50 && handi <= 550) {
 				skipstart = true;
 				tanhao = false;
 				drawProcess();
@@ -427,7 +427,7 @@ $(function() {
 				}
 				$random.html(num);
 			}
-			if (handi > 600) {
+			if (handi > 550) {
 				tanhao = false;
 				$("#hand-message").text("完成");
 				stopAni2();
@@ -438,7 +438,7 @@ $(function() {
 			}
 		}, 20)
 		$("#canvas-btn").on("touchend", function(e) {
-			if (thisstaus != 1 || handi > 600) {
+			if (thisstaus != 1 || handi > 550) {
 				return;
 			}
 			$("#hand-message").text("按钮已松开，请重新吹气");
