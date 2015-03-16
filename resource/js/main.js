@@ -14,6 +14,9 @@ $(function() {
 		//原始链接
 	}
 	Jser.user = {};
+	TWeiXinCount = function() {
+		Jser.getJSON(Jser.ACTION + "share_complate/");
+	};
 	// 获取当前用户信息
 	function init() {
 		// alert("locOpenid:" + locOpenid + "," + location.href);
@@ -25,8 +28,8 @@ $(function() {
 				$(".js-help-h2").html(data.message.total_height);
 				var h = data.message.height;
 				$(".js-pc-h1").html(h);
-				if (h > 600) {
-					h = 600;
+				if (h > 1000) {
+					h = 1000;
 				}
 				$(".js-help-pc").css("top", 200 - h * 0.375);
 				loadwxconfig();
@@ -100,10 +103,12 @@ $(function() {
 	// 分享链接 是否需要带
 	function shareTitle(m) {
 		WeiXinShare.lineLink = global_lineLink + "?openid=" + Jser.user.openid;
-		if (m) {
-			WeiXinShare.shareTitle = "我在真朋友对屏吹活动中吹了" + m + "米，运足气，对屏吹！惊喜好礼等你拿！";
-		}
-		weixin6bySet();
+		Jser.getJSON(Jser.ACTION + "share_message/", function(data) {
+			if (m) {
+				WeiXinShare.shareTitle = "我在真朋友对屏吹活动中吹了" + m + "米，打败了" + data.over + "%的人，运足气，对屏吹！惊喜好礼等你拿！";
+			}
+			weixin6bySet();
+		})
 	};
 	// 判断进入的场景 应该是那个
 	function loadcanplay() {
@@ -262,9 +267,9 @@ $(function() {
 	function switch5() {
 		get_help_message();
 		$(".js-wrapper1").fadeOut(300, function() {
-			if(Number(Jser.user.prize)){
+			if (Number(Jser.user.prize)) {
 				$(".js-prize").html("恭喜您已中奖，<br/>请等待工作人员联系！");
-			}else{
+			} else {
 				$(".js-prize").html("您离目标还差一点，<br/>喊朋友来帮你吹！");
 			}
 			$(".js-wrapper5").fadeIn(300, function() {
@@ -299,8 +304,8 @@ $(function() {
 			$(".js-h1").html(h);
 			$(".js-pc-h1").html(h);
 			if (role == "me") {
-				if (h > 600) {
-					h = 600
+				if (h > 1000) {
+					h = 1000
 				}
 				$(".js-pc").css("top", 200 - h * 0.375);
 				shareTitle(data.message.height);
@@ -321,7 +326,7 @@ $(function() {
 	var context = canvas.getContext('2d');
 
 	function initDraw() {
-		$("#hand-message").text("准备开始");
+		$("#hand-message").text("按下指纹游戏开始");
 		initTanhao = true;
 		tanhao = true;
 		skipstart = false;
@@ -402,7 +407,7 @@ $(function() {
 		event.preventDefault();
 		thisstaus = 1;
 		initTanhao = false;
-		$("#hand-message").text("准备开始");
+		$("#hand-message").text("按住按钮，持续吹气");
 		processValue = 0;
 		var $this = $(this),
 			num;
@@ -415,7 +420,7 @@ $(function() {
 		clearInterval(handTime);
 		handTime = setInterval(function() {
 			handi++;
-			if (handi > 50 && handi <= 550) {
+			if (handi > 5 && handi <= 505) {
 				skipstart = true;
 				tanhao = false;
 				drawProcess();
@@ -427,7 +432,7 @@ $(function() {
 				}
 				$random.html(num);
 			}
-			if (handi > 550) {
+			if (handi > 505) {
 				tanhao = false;
 				$("#hand-message").text("完成");
 				stopAni2();
@@ -438,7 +443,7 @@ $(function() {
 			}
 		}, 20)
 		$("#canvas-btn").on("touchend", function(e) {
-			if (thisstaus != 1 || handi > 550) {
+			if (thisstaus != 1 || handi > 505) {
 				return;
 			}
 			$("#hand-message").text("按钮已松开，请重新吹气");

@@ -15,7 +15,7 @@
 <body>
     <!-- 内容页 -->
     <div class="wrap" id="js-wrapper">
-        <div class="wrapper wrapper1 js-wrapper1">
+        <div class="wrapper wrapper1 js-wrapper1 hide">
             <div class="btn btn-start js-start">开始游戏</div>
             <div class="btn btn-explain js-explain">活动说明</div>
         </div>
@@ -27,18 +27,19 @@
             <img class="hide" id="imgprocess" name="imgprocess" src="resource/images/c1.png">
             <div class="ani js-ani"></div>
             <canvas width="172" height="172" class="canvas-process" id="canvas-process"></canvas>
-            <p class="p1" id="hand-message">准备开始</p>
+            <p class="p1" id="hand-message">按下指纹游戏开始</p>
             <p class="p2"><span class="js-random-txt">0</span>米</p>
             <div class="btn-touch" id="canvas-btn"></div>
         </div> 
-        <div class="wrapper wrapper4 js-wrapper4 hide">
+        <div class="wrapper wrapper4 js-wrapper4">
             <p class="p1"><span class="js-h1 js-help-h1"></span>米</p>
             <div class="prize">您离目标还差一点，<br/>喊朋友来帮你吹！</div>
             <div class="lou">
                 <div class="pc js-pc"><div class="pc-h1"><span class="js-pc-h1"></span>米</div></div>
             </div>
-            <div class="btn btn-help js-help"><div class="pt8">喊人帮忙</div></div>
-            <div class="btn btn-explain btn-explain2 js-explain"><div class="pt8">活动说明</div></div>
+            <div class="btn2 btn2-a btn-help2 js-gameplay"><div class="pt8">点击再次挑战</div></div>
+            <div class="btn2 btn2-b btn-help2  js-help"><div class="pt8">分享最终结果</div></div>
+            <div class="messageBox red">提示：最终分数不可更改</div>
         </div>
         <div class="wrapper wrapper5 js-wrapper5 hide">
             <p class="p1">目前累计<span class="js-help-h2"></span>米</p>
