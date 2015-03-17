@@ -328,3 +328,26 @@ body{
   top:80.33%;
 }
 .red{color: #ff0000}
+.jiantou{
+  position: absolute;
+  bottom:156px;
+  left: 50%;
+  width: 30px;
+  height: 30px;
+  background: url(../images/jiantou.png) 0 0 no-repeat;
+  background-size: 100% 100%;
+    -webkit-animation-name: arrowDown;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count: infinite;
+}
+@-webkit-keyframes 'arrowDown' {
+    from {  
+        -webkit-transform: translate(-15px,0);        
+    }
+    50% {   
+        -webkit-transform: translate(-15px,20px);
+    }
+    to {
+        -webkit-transform: translate(-15px,0);
+    }  
+}
