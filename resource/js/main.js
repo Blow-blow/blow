@@ -31,7 +31,7 @@ $(function() {
 				if (h > 1000) {
 					h = 1000;
 				}
-				$(".js-help-pc").css("top", 200 - h * 0.375);
+				$(".js-help-pc").css("top", 200 - h * 0.225);
 				loadwxconfig();
 				initwrapper();
 			}
@@ -103,9 +103,10 @@ $(function() {
 	// 分享链接 是否需要带
 	function shareTitle(m) {
 		WeiXinShare.lineLink = global_lineLink + "?openid=" + Jser.user.openid;
-		Jser.getJSON(Jser.ACTION + "share_message/", function(data) {
+		Jser.getJSON(Jser.ACTION + "share_message", "", function(data) {
+			// alert(JSON.stringify(data) + ",m:" + m)
 			if (m) {
-				WeiXinShare.shareTitle = "我在真朋友对屏吹活动中吹了" + m + "米，打败了" + data.over + "%的人，运足气，对屏吹！惊喜好礼等你拿！";
+				WeiXinShare.shareTitle = "我在真朋友对屏吹活动中吹了" + m + "米，打败了" + data.message.over + "%的人，运足气，对屏吹！惊喜好礼等你拿！";
 			}
 			weixin6bySet();
 		})
@@ -156,7 +157,7 @@ $(function() {
 			var h = data.message.height;
 			$(".js-other-h1").html(h);
 			$(".js-pc-h1").html(h);
-			$(".js-help-pc").css("top", 200 - h * 0.375);
+			$(".js-help-pc").css("top", 200 - h * 0.225);
 			$(".js-other-h2").html(data.message.total_height);
 		});
 	};
@@ -307,11 +308,11 @@ $(function() {
 				if (h > 1000) {
 					h = 1000
 				}
-				$(".js-pc").css("top", 200 - h * 0.375);
+				$(".js-pc").css("top", 200 - h * 0.225);
 				shareTitle(data.message.height);
 			} else {
 				$(".js-other-h2").html(data.message.total_height);
-				$(".js-help-pc").css("top", 200 - h * 0.375);
+				$(".js-help-pc").css("top", 200 - h * 0.225);
 				get_help_message();
 			}
 		}, function(data) {
